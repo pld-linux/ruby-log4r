@@ -1,6 +1,6 @@
-%define ruby_archdir    %(ruby -r rbconfig -e 'print Config::CONFIG["archdir"]')
-%define ruby_rubylibdir %(ruby -r rbconfig -e 'print Config::CONFIG["rubylibdir"]')
-%define	ruby_ridir	%(ruby -r rbconfig -e 'include Config; print File.join(CONFIG["datadir"], "ri", CONFIG["ruby_version"], "system")')
+%define		ruby_archdir	%(ruby -r rbconfig -e 'print Config::CONFIG["archdir"]')
+%define		ruby_rubylibdir	%(ruby -r rbconfig -e 'print Config::CONFIG["rubylibdir"]')
+%define		ruby_ridir	%(ruby -r rbconfig -e 'include Config; print File.join(CONFIG["datadir"], "ri", CONFIG["ruby_version"], "system")')
 Summary:	Ruby Logging framework
 Summary(pl):	Szkielet do logowania w jêzyku Ruby
 Name:		ruby-LOG4R
