@@ -39,8 +39,8 @@ innymi.
 cp %{SOURCE1} .
 mv src lib
 ruby setup.rb config \
-	--site-ruby=%{ruby_rubylibdir} \
-	--so-dir=%{ruby_archdir}
+	--siterubyver=%{ruby_rubylibdir} \
+	--sodir=%{ruby_archdir}
 
 ruby setup.rb setup
 rdoc --inline-source --op rdoc lib
