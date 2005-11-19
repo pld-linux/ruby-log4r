@@ -1,11 +1,8 @@
-%define		ruby_archdir	%(ruby -r rbconfig -e 'print Config::CONFIG["archdir"]')
-%define		ruby_rubylibdir	%(ruby -r rbconfig -e 'print Config::CONFIG["rubylibdir"]')
-%define		ruby_ridir	%(ruby -r rbconfig -e 'include Config; print File.join(CONFIG["datadir"], "ri", CONFIG["ruby_version"], "system")')
+%define tarname log4r
 Summary:	Ruby Logging framework
 Summary(pl):	Szkielet do logowania w jêzyku Ruby
 Name:		ruby-LOG4R
 Version:	1.0.5
-%define tarname log4r
 Release:	1
 License:	GPL
 Group:		Development/Libraries
@@ -13,6 +10,7 @@ Source0:	http://dl.sourceforge.net/log4r/%{tarname}-%{version}.tgz
 # Source0-md5:	fc69892335d86f7dcd8f8b47a1bbe801
 Source1:	setup.rb
 URL:		http://log4r.sourceforge.net/
+BuildRequires:	rpmbuild(macros) >= 1.263
 BuildRequires:	ruby
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -27,17 +25,16 @@ safetyness, XML and YAML configuration, and more.
 Log4r to obszerna i elastyczna biblioteka do logowania napisana w
 jêzyku Ruby przeznaczona do u¿ywania w programach napisanych w tym
 jêzyku. Jest to system hierarchicznego logowania z dowoln± liczb±
-poziomów, w³asnymi nazwami poziomów, dziedziczeniem loggerów,
-wieloma docelowymi wyj¶ciami, ¶ledzeniem wykonywania, w³asnym
-formatowaniem, uwzglêdnieniem w±tków, konfiguracj± XML i YAML i
-innymi.
+poziomów, w³asnymi nazwami poziomów, dziedziczeniem loggerów, wieloma
+docelowymi wyj¶ciami, ¶ledzeniem wykonywania, w³asnym formatowaniem,
+uwzglêdnieniem w±tków, konfiguracj± XML i YAML i innymi.
 
 %prep
 %setup -q -n %{tarname}-%{version}
-
-%build
 cp %{SOURCE1} .
 mv src lib
+
+%build
 ruby setup.rb config \
 	--siterubyver=%{ruby_rubylibdir} \
 	--sodir=%{ruby_archdir}
