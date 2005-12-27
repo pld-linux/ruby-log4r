@@ -3,7 +3,7 @@ Summary:	Ruby Logging framework
 Summary(pl):	Szkielet do logowania w jêzyku Ruby
 Name:		ruby-LOG4R
 Version:	1.0.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Libraries
 Source0:	http://dl.sourceforge.net/log4r/%{tarname}-%{version}.tgz
@@ -11,7 +11,7 @@ Source0:	http://dl.sourceforge.net/log4r/%{tarname}-%{version}.tgz
 Source1:	setup.rb
 URL:		http://log4r.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.263
-BuildRequires:	ruby
+BuildRequires:	ruby-modules
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
