@@ -10,8 +10,9 @@ Source0:	http://dl.sourceforge.net/log4r/%{tarname}-%{version}.tgz
 # Source0-md5:	fc69892335d86f7dcd8f8b47a1bbe801
 Source1:	setup.rb
 URL:		http://log4r.sourceforge.net/
-BuildRequires:	rpmbuild(macros) >= 1.263
+BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby-modules
+%ruby_mod_ver_requires_eq
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
