@@ -1,6 +1,6 @@
 %define tarname log4r
 Summary:	Ruby Logging framework
-Summary(pl.UTF-8):   Szkielet do logowania w języku Ruby
+Summary(pl.UTF-8):	Szkielet do logowania w języku Ruby
 Name:		ruby-LOG4R
 Version:	1.0.5
 Release:	2
