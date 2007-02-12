@@ -1,6 +1,6 @@
 %define tarname log4r
 Summary:	Ruby Logging framework
-Summary(pl):	Szkielet do logowania w jêzyku Ruby
+Summary(pl.UTF-8):   Szkielet do logowania w jÄ™zyku Ruby
 Name:		ruby-LOG4R
 Version:	1.0.5
 Release:	2
@@ -22,13 +22,13 @@ any number of levels, custom level names, logger inheritance, multiple
 output destinations, execution tracing, custom formatting, thread
 safetyness, XML and YAML configuration, and more.
 
-%description -l pl
+%description -l pl.UTF-8
 Log4r to obszerna i elastyczna biblioteka do logowania napisana w
-jêzyku Ruby przeznaczona do u¿ywania w programach napisanych w tym
-jêzyku. Jest to system hierarchicznego logowania z dowoln± liczb±
-poziomów, w³asnymi nazwami poziomów, dziedziczeniem loggerów, wieloma
-docelowymi wyj¶ciami, ¶ledzeniem wykonywania, w³asnym formatowaniem,
-uwzglêdnieniem w±tków, konfiguracj± XML i YAML i innymi.
+jÄ™zyku Ruby przeznaczona do uÅ¼ywania w programach napisanych w tym
+jÄ™zyku. Jest to system hierarchicznego logowania z dowolnÄ… liczbÄ…
+poziomÃ³w, wÅ‚asnymi nazwami poziomÃ³w, dziedziczeniem loggerÃ³w, wieloma
+docelowymi wyjÅ›ciami, Å›ledzeniem wykonywania, wÅ‚asnym formatowaniem,
+uwzglÄ™dnieniem wÄ…tkÃ³w, konfiguracjÄ… XML i YAML i innymi.
 
 %prep
 %setup -q -n %{tarname}-%{version}
