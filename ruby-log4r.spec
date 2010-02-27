@@ -1,18 +1,19 @@
-%define tarname log4r
+%define pkgname log4r
 Summary:	Ruby Logging framework
 Summary(pl.UTF-8):	Szkielet do logowania w języku Ruby
-Name:		ruby-LOG4R
+Name:		ruby-%{pkgname}
 Version:	1.0.5
 Release:	2
 License:	GPL
 Group:		Development/Libraries
-Source0:	http://dl.sourceforge.net/log4r/%{tarname}-%{version}.tgz
+Source0:	http://dl.sourceforge.net/log4r/%{pkgname}-%{version}.tgz
 # Source0-md5:	fc69892335d86f7dcd8f8b47a1bbe801
 Source1:	setup.rb
 URL:		http://log4r.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby-modules
 %{?ruby_mod_ver_requires_eq}
+Obsoletes:	ruby-LOG4R
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -31,7 +32,7 @@ docelowymi wyjściami, śledzeniem wykonywania, własnym formatowaniem,
 uwzględnieniem wątków, konfiguracją XML i YAML i innymi.
 
 %prep
-%setup -q -n %{tarname}-%{version}
+%setup -q -n %{pkgname}-%{version}
 cp %{SOURCE1} .
 mv src lib
 
