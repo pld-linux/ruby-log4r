@@ -2,19 +2,18 @@
 Summary:	Ruby Logging framework
 Summary(pl.UTF-8):	Szkielet do logowania w języku Ruby
 Name:		ruby-%{pkgname}
-Version:	1.0.5
-Release:	2
-License:	GPL
+Version:	1.1.9
+Release:	1
+License:	GPL v3
 Group:		Development/Libraries
-Source0:	http://dl.sourceforge.net/log4r/%{pkgname}-%{version}.tgz
-# Source0-md5:	fc69892335d86f7dcd8f8b47a1bbe801
-Source1:	setup.rb
-URL:		http://log4r.sourceforge.net/
-BuildRequires:	rpmbuild(macros) >= 1.277
-BuildRequires:	ruby-modules
-%{?ruby_mod_ver_requires_eq}
-Obsoletes:	ruby-LOG4R
+Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
+# Source0-md5:	5b402b3b8f3735d56f93301f37f149ff
+URL:		http://log4r.rubyforge.org/
+BuildRequires:	rpm-rubyprov
+BuildRequires:	rpmbuild(macros) >= 1.656
 Provides:	ruby-LOG4R
+Obsoletes:	ruby-LOG4R
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -32,33 +31,45 @@ poziomów, własnymi nazwami poziomów, dziedziczeniem loggerów, wieloma
 docelowymi wyjściami, śledzeniem wykonywania, własnym formatowaniem,
 uwzględnieniem wątków, konfiguracją XML i YAML i innymi.
 
+%package ri
+Summary:	ri documentation for %{pkgname}
+Summary(pl.UTF-8):	Dokumentacja w formacie ri dla %{pkgname}
+Group:		Documentation
+Requires:	ruby
+
+%description ri
+ri documentation for %{pkgname}.
+
+%description ri -l pl.UTF-8
+Dokumentacji w formacie ri dla %{pkgname}.
+
 %prep
 %setup -q -n %{pkgname}-%{version}
-cp %{SOURCE1} .
-mv src lib
 
 %build
-ruby setup.rb config \
-	--siterubyver=%{ruby_rubylibdir} \
-	--sodir=%{ruby_archdir}
-
-ruby setup.rb setup
 rdoc --inline-source --op rdoc lib
 rdoc --ri --op ri lib
+rm -r ri/{Object,REXML}
+rm ri/cache.ri
+rm ri/created.rid
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{ruby_rubylibdir},%{ruby_ridir}}
-
-ruby setup.rb install \
-	--prefix=$RPM_BUILD_ROOT
-
+install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{ruby_ridir}}
+cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
 cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
+
+rm -r $RPM_BUILD_ROOT%{ruby_vendorlibdir}/log4r/rdoc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{ruby_rubylibdir}/*
-%{ruby_ridir}/*
+%doc README
+%{ruby_vendorlibdir}/log4r.rb
+%{ruby_vendorlibdir}/log4r
+
+%files ri
+%defattr(644,root,root,755)
+%{ruby_ridir}/Log4r
