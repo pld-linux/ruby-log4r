@@ -1,9 +1,13 @@
+#
+# Conditional build:
+%bcond_without	doc			# don't build ri/rdoc
+
 %define pkgname log4r
 Summary:	Ruby Logging framework
 Summary(pl.UTF-8):	Szkielet do logowania w języku Ruby
 Name:		ruby-%{pkgname}
 Version:	1.1.9
-Release:	2
+Release:	3
 License:	GPL v3
 Group:		Development/Libraries
 Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
@@ -47,19 +51,26 @@ Dokumentacji w formacie ri dla %{pkgname}.
 %setup -q -n %{pkgname}-%{version}
 
 %build
-rdoc --inline-source --op rdoc lib
+%__gem_helper spec
+
+%if %{with doc}
+rdoc --op rdoc lib
 rdoc --ri --op ri lib
 rm -r ri/{Object,REXML}
 rm ri/cache.ri
 rm ri/created.rid
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{ruby_ridir}}
+install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{ruby_specdir},%{ruby_ridir}}
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
-cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
-
+cp -p %{pkgname}-%{version}.gemspec $RPM_BUILD_ROOT%{ruby_specdir}
 rm -r $RPM_BUILD_ROOT%{ruby_vendorlibdir}/log4r/rdoc
+
+%if %{with doc}
+cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -69,7 +80,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc README
 %{ruby_vendorlibdir}/log4r.rb
 %{ruby_vendorlibdir}/log4r
+%{ruby_specdir}/%{pkgname}-%{version}.gemspec
 
+%if %{with doc}
 %files ri
 %defattr(644,root,root,755)
 %{ruby_ridir}/Log4r
+%dir %{ruby_ridir}/lib
+%{ruby_ridir}/lib/log4r
+%endif
