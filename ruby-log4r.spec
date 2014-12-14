@@ -7,7 +7,7 @@ Summary:	Ruby Logging framework
 Summary(pl.UTF-8):	Szkielet do logowania w języku Ruby
 Name:		ruby-%{pkgname}
 Version:	1.1.9
-Release:	3
+Release:	4
 License:	GPL v3
 Group:		Development/Libraries
 Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
