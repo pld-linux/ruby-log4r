@@ -5,14 +5,14 @@
 %define pkgname log4r
 Summary:	Ruby Logging framework
 Summary(pl.UTF-8):	Szkielet do logowania w języku Ruby
-Name:		ruby-%{pkgname}
-Version:	1.1.9
-Release:	5
-License:	GPL v3
-Group:		Development/Libraries
-Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
-# Source0-md5:	5b402b3b8f3735d56f93301f37f149ff
-URL:		http://log4r.rubyforge.org/
+Name:           ruby-%{pkgname}
+Version:        1.1.10
+Release:        1
+License:        GPL v3
+Group:          Development/Libraries
+Source0:        http://rubygems.org/downloads/%{pkgname}-%{version}.gem
+# Source0-md5:  8d54b52c97f9fc17cc20a5277af20402
+URL:            http://log4r.rubyforge.org/
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.656
 Provides:	ruby-LOG4R
@@ -77,7 +77,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README
 %{ruby_vendorlibdir}/log4r.rb
 %{ruby_vendorlibdir}/log4r
 %{ruby_specdir}/%{pkgname}-%{version}.gemspec
